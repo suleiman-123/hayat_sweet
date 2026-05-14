@@ -18,3 +18,42 @@ for (let index = 0; index < 28; index += 1) {
 
   flowerLayer.appendChild(flower);
 }
+
+document.querySelectorAll(".cake-carousel").forEach((carousel) => {
+  const image = carousel.querySelector("img");
+  const previousButton = carousel.querySelector(".carousel-prev");
+  const nextButton = carousel.querySelector(".carousel-next");
+  const dotsLayer = carousel.querySelector(".carousel-dots");
+  const images = carousel.dataset.images.split(",").map((src) => src.trim()).filter(Boolean);
+  let currentIndex = 0;
+
+  const dots = images.map((_, index) => {
+    const dot = document.createElement("button");
+    dot.className = "carousel-dot";
+    dot.type = "button";
+    dot.setAttribute("aria-label", `عرض الصورة ${index + 1}`);
+    dot.addEventListener("click", () => showImage(index));
+    dotsLayer.appendChild(dot);
+    return dot;
+  });
+
+  function showImage(index) {
+    currentIndex = (index + images.length) % images.length;
+    image.src = images[currentIndex];
+    dots.forEach((dot, dotIndex) => {
+      dot.classList.toggle("active", dotIndex === currentIndex);
+    });
+  }
+
+  image.addEventListener("click", () => showImage(currentIndex + 1));
+  image.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      showImage(currentIndex + 1);
+    }
+  });
+  previousButton.addEventListener("click", () => showImage(currentIndex - 1));
+  nextButton.addEventListener("click", () => showImage(currentIndex + 1));
+
+  showImage(0);
+});

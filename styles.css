@@ -297,8 +297,86 @@ p {
   transition: transform 450ms ease;
 }
 
+.cake-card img[src*="phrase-cake-01"],
+.cake-card img[src*="phrase-cake-03"],
+.cake-card img[src*="phrase-cake-04"] {
+  object-position: center 56%;
+}
+
 .cake-card:hover img {
   transform: scale(1.08);
+}
+
+.cake-carousel {
+  position: relative;
+}
+
+.carousel-media {
+  position: relative;
+  overflow: hidden;
+  background: #f5edf0;
+}
+
+.cake-carousel img {
+  cursor: pointer;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  padding: 0;
+  color: var(--purple-deep);
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid rgba(169, 121, 201, 0.22);
+  border-radius: 50%;
+  box-shadow: 0 10px 24px rgba(111, 61, 143, 0.14);
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 1;
+  transform: translateY(-50%);
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.carousel-arrow:hover {
+  background: var(--white);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.carousel-prev {
+  right: 14px;
+}
+
+.carousel-next {
+  left: 14px;
+}
+
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.carousel-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  background: rgba(169, 121, 201, 0.32);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: width 180ms ease, background 180ms ease;
+}
+
+.carousel-dot.active {
+  width: 28px;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  border-radius: 999px;
 }
 
 .cake-card div,
@@ -520,6 +598,12 @@ p {
 
   .cake-card img {
     height: 240px;
+  }
+
+  .carousel-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.7rem;
   }
 
   .about-card,
